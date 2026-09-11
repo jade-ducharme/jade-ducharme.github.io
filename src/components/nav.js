@@ -6,10 +6,9 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { throttle } from '@utils';
 import { navLinks, navHeight } from '@config';
 import { Menu } from '@components';
-import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts, loaderDelay } = theme;
+const { colors, fontSizes, fonts, fadeTimeout } = theme;
 
 const StyledContainer = styled.header`
   ${mixins.flexBetween};
@@ -33,33 +32,14 @@ const StyledContainer = styled.header`
   ${media.tablet`padding: 0 25px;`};
 `;
 const StyledNav = styled.nav`
-  ${mixins.flexBetween};
+  ${mixins.flexCenter};
+  justify-content: flex-end;
   position: relative;
   width: 100%;
   color: ${colors.lightestSlate};
   font-family: ${fonts.SFMono};
   counter-reset: item 0;
   z-index: 12;
-`;
-const StyledLogo = styled.div`
-  ${mixins.flexCenter};
-  a {
-    display: block;
-    color: ${colors.green};
-    width: 42px;
-    height: 42px;
-    &:hover,
-    &:focus {
-      svg {
-        fill: ${colors.transGreen};
-      }
-    }
-    svg {
-      fill: none;
-      transition: ${theme.transition};
-      user-select: none;
-    }
-  }
 `;
 const StyledHamburger = styled.div`
   ${mixins.flexCenter};
@@ -232,7 +212,7 @@ class Nav extends Component {
   render() {
     const { isMounted, menuOpen, scrollDirection } = this.state;
     const { isHome } = this.props;
-    const timeout = isHome ? loaderDelay : 0;
+    const timeout = isHome ? fadeTimeout : 0;
     const fadeClass = isHome ? 'fade' : '';
     const fadeDownClass = isHome ? 'fadedown' : '';
 
@@ -242,24 +222,6 @@ class Nav extends Component {
           <body className={menuOpen ? 'blur' : ''} />
         </Helmet>
         <StyledNav>
-          <TransitionGroup component={null}>
-            {isMounted && (
-              <CSSTransition classNames={fadeClass} timeout={timeout}>
-                <StyledLogo tabIndex="-1">
-                  {isHome ? (
-                    <a href="/" aria-label="home">
-                      <IconLogo />
-                    </a>
-                  ) : (
-                    <Link to="/" aria-label="home">
-                      <IconLogo />
-                    </Link>
-                  )}
-                </StyledLogo>
-              </CSSTransition>
-            )}
-          </TransitionGroup>
-
           <TransitionGroup component={null}>
             {isMounted && (
               <CSSTransition classNames={fadeClass} timeout={timeout}>

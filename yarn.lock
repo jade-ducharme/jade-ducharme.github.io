@@ -2645,11 +2645,6 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.20.0:
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
 
-animejs@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/animejs/-/animejs-4.5.0.tgz#d0f6f5141cff15629ae02ce3c379a0846784e4d1"
-  integrity sha512-NQimYX+lz8WaXonGS9zVVoviCIAjONeJayxacUditaivYLqyXgGjFKjuyl0aUUhFKm5MriX9ty1TGovNzoJQWA==
-
 anser@^2.1.1:
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/anser/-/anser-2.3.5.tgz#3435896b68b93e5e744842499d0ce3e6f6d013ee"

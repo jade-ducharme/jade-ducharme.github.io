@@ -27,7 +27,7 @@ module.exports = [
     },
   },
   {
-    files: ['gatsby-*.js', '*.config.js', 'src/config.js'],
+    files: ['gatsby-*.js', '*.config.js', 'src/config.js', 'scripts/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'commonjs',

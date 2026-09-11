@@ -4,5 +4,5 @@ title: 'Improved Modeling for Moving Sources of Radio Frequency Interference and
 venue: "Canadian Astronomical Society's Annual General Meeting"
 type: 'Poster'
 location: 'Université de Montréal, Montréal, QC'
-url: ''
+url: 'https://www.astro.umontreal.ca/casca2026/en/'
 ---

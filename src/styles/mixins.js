@@ -135,7 +135,7 @@ const mixins = {
     padding: 0;
     margin: 0;
     list-style: none;
-    font-size: ${fontSizes.lg};
+    font-size: ${fontSizes.xxl};
     li {
       position: relative;
       padding-left: 30px;

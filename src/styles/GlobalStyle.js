@@ -32,12 +32,9 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.slate};
     line-height: 1.3;
     font-family: ${fonts.Calibre};
-    font-size: ${fontSizes.xl};
-    ${media.phablet`font-size: ${fontSizes.lg};`}
+    font-size: ${fontSizes.xxl};
+    ${media.phablet`font-size: ${fontSizes.xl};`}
 
-    &.hidden {
-      overflow: hidden;
-    }
     &.blur {
       overflow: hidden;
       #root > #content > * {
@@ -216,10 +213,6 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.md};
-  }
-
-  #logo {
-    color: ${colors.green};
   }
 
   .overline {

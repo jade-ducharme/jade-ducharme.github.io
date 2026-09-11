@@ -3,7 +3,7 @@ import theme from './theme';
 import media from './media';
 const { colors, fontSizes, fonts } = theme;
 
-const Heading = styled.h3`
+const Heading = styled.h2`
   position: relative;
   display: flex;
   align-items: center;

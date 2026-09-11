@@ -6,6 +6,7 @@ external: 'https://doi.org/10.3847/1538-4357/adda45'
 tech:
   - ApJ 989, 57 (2025)
   - Collaboration
+authorship: 'collaboration'
 company: 'ApJ'
 showInProjects: true
 ---

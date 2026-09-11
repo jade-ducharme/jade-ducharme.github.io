@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import sr from '@utils/sr';
-import { srConfig, github } from '@config';
+import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -13,21 +12,38 @@ const StyledContainer = styled(Section)`
 const StyledFlexContainer = styled.div`
   ${mixins.flexBetween};
   align-items: flex-start;
-  ${media.tablet`display: block;`};
+  gap: 60px;
+  ${media.tablet`
+    display: block;
+  `};
 `;
 const StyledContent = styled.div`
-  width: 60%;
+  width: 50%;
   max-width: 480px;
   ${media.tablet`width: 100%;`};
   a {
     ${mixins.inlineLink};
   }
 `;
-const StyledSubheading = styled.h4`
+const StyledSide = styled.div`
+  width: 45%;
+  max-width: 460px;
+  ${media.tablet`
+    width: 100%;
+    max-width: 100%;
+    margin-top: 50px;
+  `};
+`;
+const StyledSubheading = styled.h3`
   margin: 30px 0 0;
   color: ${colors.lightestSlate};
-  font-size: ${fontSizes.md};
+  font-size: ${fontSizes.xxl};
   font-weight: 600;
+
+  /* the first block of the side column lines up with the top of the prose */
+  &:first-child {
+    margin-top: 0;
+  }
 `;
 const InterestsContainer = styled.ul`
   padding: 0;
@@ -36,7 +52,8 @@ const InterestsContainer = styled.ul`
 `;
 const SkillsContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 200px));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0 20px;
   overflow: hidden;
   padding: 0;
   margin: 12px 0 0 0;
@@ -45,94 +62,31 @@ const SkillsContainer = styled.ul`
 const Skill = styled.li`
   position: relative;
   margin-bottom: 10px;
-  padding-left: 20px;
+  padding-left: 24px;
   font-family: ${fonts.SFMono};
-  font-size: ${fontSizes.smish};
+  /* mono glyphs are wide: 16px here sits beside the 22px prose without
+     dominating the column */
+  font-size: ${fontSizes.md};
   color: ${colors.green};
   &:before {
     content: '▹';
     position: absolute;
     left: 0;
     color: ${colors.green};
-    font-size: ${fontSizes.sm};
-    line-height: 12px;
+    font-size: ${fontSizes.lg};
+    line-height: 1.4;
   }
 `;
 const Interest = styled(Skill)`
   color: ${colors.lightSlate};
   font-family: ${fonts.Calibre};
-  font-size: ${fontSizes.lg};
+  font-size: ${fontSizes.xxl};
   line-height: 1.3;
-`;
-const StyledPic = styled.div`
-  position: relative;
-  width: 40%;
-  max-width: 300px;
-  margin-left: 60px;
-  ${media.tablet`margin: 60px auto 0;`};
-  ${media.phablet`width: 70%;`};
-  a {
-    &:focus {
-      outline: 0;
-    }
-  }
-`;
-const StyledAvatar = styled(GatsbyImage)`
-  position: relative;
-  mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
-  border-radius: ${theme.borderRadius};
-  transition: ${theme.transition};
-`;
-const StyledAvatarLink = styled.a`
-  ${mixins.boxShadow};
-  width: 100%;
-  position: relative;
-  border-radius: ${theme.borderRadius};
-  background-color: ${colors.lightestSlate};
-  margin-left: -20px;
-  &:hover,
-  &:focus {
-    background: transparent;
-    &:after {
-      top: 15px;
-      left: 15px;
-    }
-    ${StyledAvatar} {
-      filter: none;
-      mix-blend-mode: normal;
-    }
-  }
-  &:before,
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: ${theme.borderRadius};
-    transition: ${theme.transition};
-  }
-  &:before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: ${colors.navy};
-    mix-blend-mode: screen;
-  }
-  &:after {
-    border: 2px solid ${colors.green};
-    top: 10px;
-    left: 10px;
-    z-index: -1;
-  }
 `;
 
 const About = ({ data }) => {
   const { frontmatter, html } = data[0].node;
-  const { title, skills, interests, avatar } = frontmatter;
-  const avatarImage = getImage(avatar.childImageSharp);
+  const { title, skills, interests } = frontmatter;
   const revealContainer = useRef(null);
   useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
@@ -142,7 +96,9 @@ const About = ({ data }) => {
       <StyledFlexContainer>
         <StyledContent>
           <div dangerouslySetInnerHTML={{ __html: html }} />
+        </StyledContent>
 
+        <StyledSide>
           {interests && interests.length > 0 && (
             <>
               <StyledSubheading>Research interests</StyledSubheading>
@@ -164,12 +120,7 @@ const About = ({ data }) => {
               </SkillsContainer>
             </>
           )}
-        </StyledContent>
-        <StyledPic>
-          <StyledAvatarLink href={github}>
-            <StyledAvatar image={avatarImage} alt="Avatar" />
-          </StyledAvatarLink>
-        </StyledPic>
+        </StyledSide>
       </StyledFlexContainer>
     </StyledContainer>
   );

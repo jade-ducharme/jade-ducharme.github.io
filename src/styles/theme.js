@@ -1,19 +1,24 @@
 import { hex2rgba } from '@utils';
 
-const ACCENT = '#64ffda';
-const DARK_BG = '#020c1b';
-const BG = '#0a192f';
+// Neutral dark-grey backgrounds with a jade accent. The token names below are
+// inherited from the template (navy / slate / green) and are kept as structural
+// slots — darkest background, page background, raised surface, border, dim text,
+// text, bright text, accent — so every component keeps working. The values are
+// grey and jade, not navy.
+const ACCENT = '#00ea96'; // jade — links, overlines, buttons, emphasis
+const DARK_BG = '#111213'; // deepest grey
+const BG = '#1b1c1e'; // page background
 
 const theme = {
   colors: {
     darkNavy: DARK_BG,
     navy: BG,
-    lightNavy: '#172a45',
-    lightestNavy: '#303C55',
-    slate: '#8892b0',
-    lightSlate: '#a8b2d1',
-    lightestSlate: '#ccd6f6',
-    white: '#e6f1ff',
+    lightNavy: '#26282b', // raised surfaces: cards, tab hover, code
+    lightestNavy: '#3b3e43', // borders and dividers
+    slate: '#aeafb4', // default body text
+    lightSlate: '#cbccd0', // brighter body text
+    lightestSlate: '#e6e7ea', // headings
+    white: '#fafafa', // brightest emphasis
     green: ACCENT,
     transGreen: hex2rgba(ACCENT, 0.07),
     shadowNavy: hex2rgba(DARK_BG, 0.7),
@@ -33,6 +38,7 @@ const theme = {
     lg: '18px',
     xl: '20px',
     xxl: '22px',
+    h4: '26px',
     h3: '32px',
   },
 
@@ -54,8 +60,8 @@ const theme = {
   hamAfter: `bottom 0.1s ease-in 0.25s, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19)`,
   hamAfterActive: `bottom 0.1s ease-out, transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s`,
 
-  navDelay: 1000,
-  loaderDelay: 2000,
+  navDelay: 100,
+  fadeTimeout: 2000,
 };
 
 export default theme;

@@ -6,6 +6,7 @@ external: 'https://doi.org/10.3847/1538-4357/adff80'
 tech:
   - ApJ 991, 211 (2025)
   - Collaboration
+authorship: 'collaboration'
 company: 'ApJ'
 showInProjects: true
 ---

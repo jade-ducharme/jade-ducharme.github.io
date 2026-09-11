@@ -6,10 +6,11 @@ external: 'https://doi.org/10.1017/pasa.2026.10218'
 tech:
   - PASA 43, e085 (2026)
   - Collaboration
+authorship: 'collaboration'
 company: 'PASA'
 showInProjects: true
 ---
 
-Sensitivity doubled, baselines quadrupled, and Epoch of Reionization observations optimised — the instrument paper for the MWA's third phase.
+MWA Phase III upgrade: densitivity doubled, baselines quadrupled, and Epoch of Reionization observations optimised.
 
 S. J. Tingay et al., including **J. Ducharme**.

@@ -32,7 +32,8 @@ const StyledHeading = styled(Heading)`
     display: none;
   }
 `;
-const StyledTitle = styled.h4`
+const StyledTitle = styled.p`
+  font-weight: 600;
   margin: 0 0 20px;
   font-size: 60px;
   ${media.desktop`font-size: 50px;`};
@@ -51,7 +52,7 @@ const Contact = ({ data }) => {
 
   return (
     <StyledContainer id="contact" ref={revealContainer}>
-      <StyledHeading>What&apos;s Next?</StyledHeading>
+      <StyledHeading>Contact</StyledHeading>
 
       <StyledTitle>{title}</StyledTitle>
 

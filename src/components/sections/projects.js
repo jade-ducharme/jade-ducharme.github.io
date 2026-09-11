@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import sr from '@utils/sr';
@@ -13,8 +12,11 @@ const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
   flex-direction: column;
   align-items: flex-start;
+  /* keeps the section counter in step with the nav numbering even though this
+     section shows a centered title instead of a numbered <Heading> */
+  counter-increment: section;
 `;
-const StyledTitle = styled.h4`
+const StyledTitle = styled.h2`
   margin: 0 auto;
   font-size: ${fontSizes.h3};
   ${media.tablet`font-size: 24px;`};
@@ -22,7 +24,7 @@ const StyledTitle = styled.h4`
     display: block;
   }
 `;
-const StyledArchiveLink = styled(Link)`
+const StyledArchiveLink = styled.a`
   ${mixins.inlineLink};
   text-align: center;
   margin: 0 auto;
@@ -37,10 +39,10 @@ const StyledGrid = styled.div`
 
   .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     grid-gap: 15px;
     position: relative;
-    ${media.desktop`grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));`};
+    ${media.desktop`grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));`};
   }
 `;
 const StyledProjectInner = styled.div`
@@ -90,13 +92,13 @@ const StyledIconLink = styled.a`
     height: 20px;
   }
 `;
-const StyledProjectName = styled.h5`
+const StyledProjectName = styled.h3`
   margin: 0 0 10px;
-  font-size: ${fontSizes.xxl};
+  font-size: ${fontSizes.xl};
   color: ${colors.lightestSlate};
 `;
 const StyledProjectDescription = styled.div`
-  font-size: 17px;
+  font-size: ${fontSizes.xl};
   color: ${colors.lightSlate};
   a {
     ${mixins.inlineLink};
@@ -113,7 +115,7 @@ const StyledTechList = styled.ul`
 
   li {
     font-family: ${fonts.SFMono};
-    font-size: ${fontSizes.xs};
+    font-size: ${fontSizes.sm};
     color: ${colors.green};
     line-height: 1.75;
     margin-right: 15px;
@@ -144,9 +146,9 @@ const Projects = ({ data }) => {
   const projectsToShow = showMore ? projects : firstSix;
 
   return (
-    <StyledContainer>
+    <StyledContainer id="projects">
       <StyledTitle ref={revealTitle}>Publications</StyledTitle>
-      <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
+      <StyledArchiveLink href="/#talks" ref={revealArchiveLink}>
         View talks &amp; outreach
       </StyledArchiveLink>
 

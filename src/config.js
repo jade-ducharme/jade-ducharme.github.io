@@ -1,12 +1,14 @@
 module.exports = {
-  siteTitle: 'Jade Marie Ducharme',
+  siteTitle: 'Jade Ducharme',
+  fullName: 'Jade Marie Ducharme',
+  siteRole: 'Ph.D. candidate in physics at Brown University',
   siteDescription:
-    'Jade Marie Ducharme is a Ph.D. candidate in physics at Brown University working on radio interferometry, 21-cm cosmology, and radio frequency interference mitigation.',
+    'Jade Ducharme (Jade Marie Ducharme) is a Ph.D. candidate in physics at Brown University researching radio interferometry, 21-cm cosmology, and radio frequency interference mitigation with the Murchison Widefield Array. Publications, talks, and CV.',
   siteKeywords:
-    'Jade Ducharme, Jade Marie Ducharme, radio astronomy, 21-cm cosmology, Epoch of Reionization, radio frequency interference, RFI mitigation, radio interferometry, MWA, Murchison Widefield Array, Brown University, Bayesian modeling, astrophysics',
+    'Jade Ducharme, Jade Marie Ducharme, Ducharme physics, Ducharme Brown University, Ducharme radio astronomy, radio astronomy, 21-cm cosmology, Epoch of Reionization, radio frequency interference, RFI mitigation, radio interferometry, MWA, Murchison Widefield Array, Brown University physics, Jonathan Pober, Bayesian modeling, astrophysics, astronomer',
   siteUrl: 'https://jade-ducharme.github.io/',
   siteLanguage: 'en_US',
-  name: 'Jade Marie Ducharme',
+  name: 'Jade Ducharme',
   location: 'Providence, RI',
   email: 'jade_ducharme@brown.edu',
   github: 'https://github.com/jade-ducharme',
@@ -37,7 +39,7 @@ module.exports = {
     },
     {
       name: 'Talks',
-      url: '/archive',
+      url: '/#talks',
     },
     {
       name: 'Contact',
@@ -48,9 +50,9 @@ module.exports = {
   navHeight: 100,
 
   colors: {
-    green: '#64ffda',
-    navy: '#0a192f',
-    darkNavy: '#020c1b',
+    green: '#00ea96',
+    navy: '#1b1c1e',
+    darkNavy: '#111213',
   },
 
   srConfig: (delay = 200) => ({

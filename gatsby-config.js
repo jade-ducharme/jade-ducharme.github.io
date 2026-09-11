@@ -13,18 +13,34 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
     {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: ['/404', '/404.html', '/offline-plugin-app-shell-fallback'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: config.siteUrl,
+        sitemap: `${config.siteUrl}sitemap-index.xml`,
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    {
+      // generates the icon set from the galaxy favicon and injects the
+      // <link rel="icon"> tags; also restores the web app manifest
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Jade Marie Ducharme',
-        short_name: 'Jade Ducharme',
+        name: config.fullName,
+        short_name: config.siteTitle,
+        description: config.siteDescription,
+        lang: 'en',
         start_url: '/',
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
         display: 'minimal-ui',
-        icon: 'src/images/logo.png',
+        icon: 'src/images/favicon.png',
       },
     },
     `gatsby-plugin-offline`,

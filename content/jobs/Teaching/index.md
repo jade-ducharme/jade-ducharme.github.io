@@ -8,5 +8,4 @@ url: 'https://www.brown.edu/academics/physics/'
 ---
 
 - Co-supervised undergraduate researchers Neal Frankenberg (Summer 2026) and Jacob Lipman (Spring 2026) at Brown, and Andrei Li (Summer 2025) at McGill.
-- Andrei Li went on to co-author our Bayesian RFI framework paper submitted to ApJ.
 - Teaching Assistant for PHYS 0220 (Astronomy, Spring 2023) and PHYS 0270 (Introduction to Astronomy, Fall 2022) at Brown University.
