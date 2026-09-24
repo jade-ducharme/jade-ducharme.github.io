@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
+import { scholar } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
@@ -23,6 +21,13 @@ const StyledTitle = styled.h2`
   a {
     display: block;
   }
+`;
+const StyledLinkRow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 30px;
+  width: 100%;
 `;
 const StyledArchiveLink = styled.a`
   ${mixins.inlineLink};
@@ -130,15 +135,6 @@ const StyledMoreButton = styled(Button)`
 
 const Projects = ({ data }) => {
   const [showMore, setShowMore] = useState(false);
-  const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
-  const revealProjects = useRef([]);
-
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
 
   const GRID_LIMIT = 9;
   const projects = data.filter(({ node }) => node);
@@ -147,75 +143,66 @@ const Projects = ({ data }) => {
 
   return (
     <StyledContainer id="projects">
-      <StyledTitle ref={revealTitle}>Publications</StyledTitle>
-      <StyledArchiveLink href="/#talks" ref={revealArchiveLink}>
-        View talks &amp; outreach
-      </StyledArchiveLink>
+      <StyledTitle>Publications</StyledTitle>
+      <StyledLinkRow>
+        <StyledArchiveLink href={scholar} target="_blank" rel="noopener noreferrer">
+          View all on Google Scholar
+        </StyledArchiveLink>
+        <StyledArchiveLink href="/#talks">View talks &amp; outreach</StyledArchiveLink>
+      </StyledLinkRow>
 
       <StyledGrid>
-        <TransitionGroup className="projects">
+        <div className="projects">
           {projectsToShow &&
             projectsToShow.map(({ node }, i) => {
               const { frontmatter, html } = node;
               const { github, external, title, tech } = frontmatter;
               return (
-                <CSSTransition
-                  key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <StyledProject
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    tabIndex="0"
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
-                    <StyledProjectInner>
-                      <header>
-                        <StyledProjectHeader>
-                          <StyledFolder>
-                            <FormattedIcon name="Folder" />
-                          </StyledFolder>
-                          <StyledProjectLinks>
-                            {github && (
-                              <StyledIconLink
-                                href={github}
-                                target="_blank"
-                                rel="nofollow noopener noreferrer"
-                                aria-label="GitHub Link">
-                                <FormattedIcon name="GitHub" />
-                              </StyledIconLink>
-                            )}
-                            {external && (
-                              <StyledIconLink
-                                href={external}
-                                target="_blank"
-                                rel="nofollow noopener noreferrer"
-                                aria-label="External Link">
-                                <FormattedIcon name="External" />
-                              </StyledIconLink>
-                            )}
-                          </StyledProjectLinks>
-                        </StyledProjectHeader>
-                        <StyledProjectName>{title}</StyledProjectName>
-                        <StyledProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
-                      </header>
-                      <footer>
-                        {tech && (
-                          <StyledTechList>
-                            {tech.map((tech, i) => (
-                              <li key={i}>{tech}</li>
-                            ))}
-                          </StyledTechList>
-                        )}
-                      </footer>
-                    </StyledProjectInner>
-                  </StyledProject>
-                </CSSTransition>
+                <StyledProject key={i} tabIndex="0">
+                  <StyledProjectInner>
+                    <header>
+                      <StyledProjectHeader>
+                        <StyledFolder>
+                          <FormattedIcon name="Folder" />
+                        </StyledFolder>
+                        <StyledProjectLinks>
+                          {github && (
+                            <StyledIconLink
+                              href={github}
+                              target="_blank"
+                              rel="nofollow noopener noreferrer"
+                              aria-label="GitHub Link">
+                              <FormattedIcon name="GitHub" />
+                            </StyledIconLink>
+                          )}
+                          {external && (
+                            <StyledIconLink
+                              href={external}
+                              target="_blank"
+                              rel="nofollow noopener noreferrer"
+                              aria-label="External Link">
+                              <FormattedIcon name="External" />
+                            </StyledIconLink>
+                          )}
+                        </StyledProjectLinks>
+                      </StyledProjectHeader>
+                      <StyledProjectName>{title}</StyledProjectName>
+                      <StyledProjectDescription dangerouslySetInnerHTML={{ __html: html }} />
+                    </header>
+                    <footer>
+                      {tech && (
+                        <StyledTechList>
+                          {tech.map((tech, i) => (
+                            <li key={i}>{tech}</li>
+                          ))}
+                        </StyledTechList>
+                      )}
+                    </footer>
+                  </StyledProjectInner>
+                </StyledProject>
               );
             })}
-        </TransitionGroup>
+        </div>
       </StyledGrid>
 
       {projects.length > GRID_LIMIT && (

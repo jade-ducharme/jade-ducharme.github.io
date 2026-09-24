@@ -47,11 +47,24 @@ const structuredData = {
           url: 'https://www.mcgill.ca/',
         },
       ],
-      memberOf: {
-        '@type': 'Organization',
-        name: 'Murchison Widefield Array Collaboration',
-        url: 'https://www.mwatelescope.org/',
-      },
+      memberOf: [
+        {
+          '@type': 'Organization',
+          name: 'Murchison Widefield Array Collaboration',
+          url: 'https://www.mwatelescope.org/',
+        },
+        {
+          '@type': 'Organization',
+          name: 'American Astronomical Society',
+          url: 'https://aas.org/',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Canadian Astronomical Society',
+          alternateName: 'Société Canadienne d’Astronomie',
+          url: 'https://www.casca.ca/',
+        },
+      ],
       knowsAbout: [
         'Radio astronomy',
         'Radio interferometry',

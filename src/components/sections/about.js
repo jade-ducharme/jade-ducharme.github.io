@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -87,11 +85,9 @@ const Interest = styled(Skill)`
 const About = ({ data }) => {
   const { frontmatter, html } = data[0].node;
   const { title, skills, interests } = frontmatter;
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
-    <StyledContainer id="about" ref={revealContainer}>
+    <StyledContainer id="about">
       <Heading>{title}</Heading>
       <StyledFlexContainer>
         <StyledContent>

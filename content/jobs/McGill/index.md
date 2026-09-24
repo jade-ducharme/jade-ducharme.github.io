@@ -4,7 +4,7 @@ title: 'B.Sc. Physics'
 company: 'McGill University'
 location: 'Montréal, QC'
 range: '2018 - 2022'
-url: 'https://www.mcgill.ca/physics/'
+url: 'https://www.physics.mcgill.ca/'
 ---
 
 - Completed a B.Sc. in physics, graduating in 2022.

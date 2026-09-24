@@ -1,9 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import sr from '@utils/sr';
 import { yearOf } from '@utils';
-import { srConfig } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
@@ -212,7 +210,7 @@ const awards = [
   {
     year: '2026',
     title: 'Physics Merit Fellowship',
-    meta: 'Brown University — full funding for one academic semester',
+    meta: 'Brown University — full funding for one academic year',
   },
   {
     year: '2025',
@@ -268,33 +266,38 @@ const development = [
   },
 ];
 
+const memberships = [
+  {
+    year: '2026–',
+    title: 'American Astronomical Society (AAS)',
+    url: 'https://aas.org/',
+  },
+  {
+    year: '2026–',
+    title: 'Canadian Astronomical Society (CASCA)',
+    url: 'https://www.casca.ca/',
+  },
+  {
+    year: '2023–',
+    title: 'MWA Collaboration',
+    url: 'https://www.mwatelescope.org/',
+  },
+];
+
 const Talks = ({ data, photos }) => {
   const talks = data;
   const cascaPhoto = getImage(photos?.casca?.childImageSharp);
   const awardPhoto = getImage(photos?.award?.childImageSharp);
   const outreachPhoto = getImage(photos?.outreach?.childImageSharp);
 
-  const revealTitle = useRef(null);
-  const revealTable = useRef(null);
-  const revealPhotos = useRef(null);
-  const revealTalks = useRef([]);
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealTable.current, srConfig());
-    if (revealPhotos.current) {
-      sr.reveal(revealPhotos.current, srConfig());
-    }
-    revealTalks.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
-  }, []);
-
   return (
     <StyledContainer id="talks">
-      <div ref={revealTitle} style={{ width: '100%' }}>
+      <div style={{ width: '100%' }}>
         <StyledTitle>Talks &amp; Outreach</StyledTitle>
         <StyledSubtitle>Conferences, seminars, awards, and public engagement</StyledSubtitle>
       </div>
 
-      <StyledTableContainer ref={revealTable}>
+      <StyledTableContainer>
         <StyledTable>
           <thead>
             <tr>
@@ -311,7 +314,7 @@ const Talks = ({ data, photos }) => {
               talks.map(({ node }, i) => {
                 const { date, title, venue, type, location: place, url } = node.frontmatter;
                 return (
-                  <tr key={i} ref={el => (revealTalks.current[i] = el)}>
+                  <tr key={i}>
                     <td className="overline year">{yearOf(date)}</td>
 
                     <td className="title">{title}</td>
@@ -345,7 +348,7 @@ const Talks = ({ data, photos }) => {
       </StyledTableContainer>
 
       {(cascaPhoto || awardPhoto || outreachPhoto) && (
-        <StyledPhotos ref={revealPhotos}>
+        <StyledPhotos>
           {cascaPhoto && (
             <StyledFigure>
               <GatsbyImage
@@ -390,6 +393,18 @@ const Talks = ({ data, photos }) => {
             <span className="year">{item.year}</span>
             {item.title}
             <span className="meta">{item.meta}</span>
+          </li>
+        ))}
+      </StyledList>
+
+      <StyledSectionHeading>Professional Memberships</StyledSectionHeading>
+      <StyledList>
+        {memberships.map((item, i) => (
+          <li key={i}>
+            <span className="year">{item.year}</span>
+            <a href={item.url} target="_blank" rel="nofollow noopener noreferrer">
+              {item.title}
+            </a>
           </li>
         ))}
       </StyledList>

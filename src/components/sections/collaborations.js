@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
@@ -127,14 +125,6 @@ const StyledPaperBody = styled.div`
 `;
 
 const Collaborations = ({ data }) => {
-  const revealTitle = useRef(null);
-  const revealPapers = useRef([]);
-
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealPapers.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
-
   const papers = data.filter(({ node }) => node);
 
   if (papers.length === 0) {
@@ -143,7 +133,7 @@ const Collaborations = ({ data }) => {
 
   return (
     <StyledContainer id="collaborations">
-      <div ref={revealTitle} style={{ width: '100%' }}>
+      <div style={{ width: '100%' }}>
         <StyledTitle>Collaboration Publications</StyledTitle>
         <StyledSubtitle>
           Papers where my authorship comes from participation in a collaboration
@@ -155,7 +145,7 @@ const Collaborations = ({ data }) => {
           const { frontmatter, html } = node;
           const { external, title, tech } = frontmatter;
           return (
-            <StyledPaper key={i} ref={el => (revealPapers.current[i] = el)}>
+            <StyledPaper key={i}>
               <StyledFolder>
                 <FormattedIcon name="Folder" />
               </StyledFolder>

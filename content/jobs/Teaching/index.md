@@ -2,6 +2,7 @@
 date: '2026-10-01'
 title: 'Teaching & Mentoring'
 company: 'Brown & McGill'
+tabLabel: 'Teaching & Mentoring'
 location: 'Providence, RI'
 range: '2022 - Present'
 url: 'https://www.brown.edu/academics/physics/'

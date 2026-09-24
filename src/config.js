@@ -13,13 +13,22 @@ module.exports = {
   email: 'jade_ducharme@brown.edu',
   github: 'https://github.com/jade-ducharme',
   cv: '/cv.pdf',
+  scholar: 'https://scholar.google.com/citations?user=OB6Gbc0AAAAJ&hl=en',
+  // `name` selects the icon in FormattedIcon; `label` is the accessible name
+  // (falls back to `name` when the two are the same word).
   socialMedia: [
+    {
+      name: 'GoogleScholar',
+      label: 'Google Scholar',
+      url: 'https://scholar.google.com/citations?user=OB6Gbc0AAAAJ&hl=en',
+    },
     {
       name: 'GitHub',
       url: 'https://github.com/jade-ducharme',
     },
     {
       name: 'Linkedin',
+      label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/jade-ducharme',
     },
   ],
@@ -54,20 +63,4 @@ module.exports = {
     navy: '#1b1c1e',
     darkNavy: '#111213',
   },
-
-  srConfig: (delay = 200) => ({
-    origin: 'bottom',
-    distance: '20px',
-    duration: 500,
-    delay,
-    rotate: { x: 0, y: 0, z: 0 },
-    opacity: 0,
-    scale: 1,
-    easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
-    mobile: true,
-    reset: false,
-    useDelay: 'always',
-    viewFactor: 0.25,
-    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
-  }),
 };

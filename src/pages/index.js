@@ -118,6 +118,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             company
+            tabLabel
             location
             range
             url

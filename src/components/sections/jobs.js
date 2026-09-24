@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -159,9 +157,6 @@ const Jobs = ({ data }) => {
   const [tabFocus, setTabFocus] = useState(null);
   const tabs = useRef([]);
 
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
-
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
       tabs.current[tabFocus].focus();
@@ -194,13 +189,13 @@ const Jobs = ({ data }) => {
   };
 
   return (
-    <StyledContainer id="jobs" ref={revealContainer}>
+    <StyledContainer id="jobs">
       <Heading>Research &amp; Experience</Heading>
       <StyledTabs>
         <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyPressed(e)}>
           {data &&
             data.map(({ node }, i) => {
-              const { company } = node.frontmatter;
+              const { company, tabLabel } = node.frontmatter;
               return (
                 <li key={i}>
                   <StyledTabButton
@@ -212,7 +207,7 @@ const Jobs = ({ data }) => {
                     aria-selected={activeTabId === i ? true : false}
                     aria-controls={`panel-${i}`}
                     tabIndex={activeTabId === i ? '0' : '-1'}>
-                    <span>{company}</span>
+                    <span>{tabLabel || company}</span>
                   </StyledTabButton>
                 </li>
               );

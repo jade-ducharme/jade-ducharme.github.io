@@ -51,13 +51,13 @@ const Footer = () => {
       <StyledSocial>
         <StyledSocialList>
           {socialMedia &&
-            socialMedia.map(({ name, url }, i) => (
+            socialMedia.map(({ name, url, label }, i) => (
               <li key={i}>
                 <StyledSocialLink
                   href={url}
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  aria-label={name}>
+                  aria-label={label || name}>
                   <FormattedIcon name={name} />
                 </StyledSocialLink>
               </li>

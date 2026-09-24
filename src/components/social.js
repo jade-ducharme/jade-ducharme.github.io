@@ -44,13 +44,13 @@ const Social = ({ isHome }) => (
   <Side isHome={isHome} orientation="left">
     <StyledList>
       {socialMedia &&
-        socialMedia.map(({ url, name }, i) => (
+        socialMedia.map(({ url, name, label }, i) => (
           <li key={i}>
             <StyledLink
               href={url}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              aria-label={name}>
+              aria-label={label || name}>
               <FormattedIcon name={name} />
             </StyledLink>
           </li>
